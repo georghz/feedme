@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
-import './Home.css'
+import "./Home.css";
 
 function Home({ isAuth }) {
   const [postLists, setPostList] = useState([]);
@@ -20,7 +20,6 @@ function Home({ isAuth }) {
 
     getPosts();
   }, [deletePost]);
-
 
   return (
     <div className="homePage">
@@ -44,6 +43,9 @@ function Home({ isAuth }) {
                 )}
               </div>
             </div>
+            <b>Ingredients: </b>
+            <div className="postIngredientContainer"> {post.steps} </div>
+            <b> Steps: </b>
             <div className="postTextContainer"> {post.postText} </div>
             <h3>@{post.author.name}</h3>
           </div>
