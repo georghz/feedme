@@ -2,18 +2,21 @@ import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
+import './CreatePost.css'
 
 function CreatePost({ isAuth }) {
-  const [title, setTitle] = useState("");
-  const [postText, setPostText] = useState("");
+  const [recipeTitle, setRecipeTitle] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const[recipeSteps, setRecipeSteps] = useState("");
 
   const postsCollectionRef = collection(db, "posts");
   let navigate = useNavigate();
 
   const createPost = async () => {
     await addDoc(postsCollectionRef, {
-      title,
-      postText,
+      title: recipeTitle,
+      postText: ingredients,
+      steps: recipeSteps,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     navigate("/");
@@ -28,22 +31,31 @@ function CreatePost({ isAuth }) {
   return (
     <div className="createPostPage">
       <div className="cpContainer">
-        <h1>Create A Post</h1>
+        <h1>Create A Recipe</h1>
         <div className="inputGp">
-          <label> Title:</label>
+          <label> Recipe Title:</label>
           <input
             placeholder="Title..."
             onChange={(event) => {
-              setTitle(event.target.value);
+              setRecipeTitle(event.target.value);
             }}
           />
         </div>
         <div className="inputGp">
-          <label> Post:</label>
+          <label> Ingredients:</label>
           <textarea
-            placeholder="Post..."
+            placeholder="Ingredients..."
             onChange={(event) => {
-              setPostText(event.target.value);
+              setRecipeSteps(event.target.value);
+            }}
+          />
+        </div>
+        <div className="inputGp">
+          <label> Steps:</label>
+          <textarea
+            placeholder="Steps..."
+            onChange={(event) => {
+              setIngredients(event.target.value);
             }}
           />
         </div>
