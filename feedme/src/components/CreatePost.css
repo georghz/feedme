@@ -45,6 +45,10 @@
     height: 150px;
   }
   
+  .likeContainer {
+    float:right;
+  }
+
   .cpContainer button {
     margin-top: 20px;
     height: 40px;
