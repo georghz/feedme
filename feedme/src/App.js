@@ -1,43 +1,41 @@
+/** 
+ * main App component
+ * contains nav bare
+ */
+
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./components/Home";
-import CreatePost from "./components/CreatePost";
-import Login from "./components/Login";
-import { useState } from "react";
-import { signOut } from "firebase/auth";
+
+import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
+import { useState, useEffect, createContext } from "react";
+
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 
-function App() {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+import Recipes from "./pages/Recipes";
+import CreatePost from "./pages/CreateRecipe";
+import Login from "./pages/Login";
+import Nav from "./components/Nav"
 
-  const signUserOut = () => {
-    signOut(auth).then(() => {
-      localStorage.clear();
-      setIsAuth(false);
-      window.location.pathname = "/login";
-    });
-  };
+export const AuthContext = createContext();
+
+function App() {
+  const [user, setUser] = useState(auth.currentUser);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {setUser(user)})
+  }, []) // creates this listener once
 
   return (
-    <Router>
-      <nav>
-        <Link to="/"> Home </Link>
-
-        {!isAuth ? (
-          <Link to="/login"> Login </Link>
-        ) : (
-          <>
-            <Link to="/createpost"> Create Post </Link>
-            <button onClick={signUserOut}> Log Out</button>
-          </>
-        )}
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home isAuth={isAuth} />} />
-        <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
-        <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-      </Routes>
-    </Router>
+    <AuthContext.Provider value={user}>
+      <Router>
+        <Nav />
+        <Routes>
+          <Route path="" element={<Recipes />} />
+          <Route path="/createrecipe" element={<CreatePost />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

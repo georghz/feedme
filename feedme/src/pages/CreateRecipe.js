@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
-import './CreatePost.css'
+import './CreateRecipe.css'
 
-function CreatePost({ isAuth }) {
+function CreatePost() {
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [recipeSteps, setRecipeSteps] = useState("");
@@ -25,7 +25,7 @@ function CreatePost({ isAuth }) {
   };
 
   useEffect(() => {
-    if (!isAuth) {
+    if (false) {
       navigate("/login");
     }
   }, []);
