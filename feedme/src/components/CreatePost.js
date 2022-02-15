@@ -7,7 +7,7 @@ import './CreatePost.css'
 function CreatePost({ isAuth }) {
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const[recipeSteps, setRecipeSteps] = useState("");
+  const [recipeSteps, setRecipeSteps] = useState("");
 
   const postsCollectionRef = collection(db, "posts");
   let navigate = useNavigate();
@@ -17,6 +17,8 @@ function CreatePost({ isAuth }) {
       title: recipeTitle,
       postText: ingredients,
       steps: recipeSteps,
+      likes: 0,
+      likedBy: [],
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     navigate("/");
