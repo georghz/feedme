@@ -27,7 +27,7 @@ export default function LikedRecipes() {
     }                      er logget inn kan gå til ./likedrecipes */
     getLikedPosts();
     //checkForEmptyLikedList();
-  }, []);
+  }, [user]);
 
   /*
   function checkForEmptyLikedList (){
