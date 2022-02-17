@@ -2,33 +2,37 @@ import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
-import './CreatePost.css'
+import "./CreateRecipe.css";
 
-function CreatePost({ isAuth }) {
+import { useContext } from "react";
+import { AuthContext } from "../App";
+
+function CreateRecipe() {
+  const user = useContext(AuthContext);
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [recipeSteps, setRecipeSteps] = useState("");
 
-  const postsCollectionRef = collection(db, "posts");
+  const postsCollectionRef = collection(db, "recipes");
   let navigate = useNavigate();
 
-  const createPost = async () => {
+  const createRecipe = async () => {
     await addDoc(postsCollectionRef, {
       title: recipeTitle,
       postText: ingredients,
       steps: recipeSteps,
       likes: 0,
       likedBy: [],
-      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      author: { name: user.displayName, id: user.uid },
     });
     navigate("/");
   };
 
   useEffect(() => {
-    if (!isAuth) {
+    if (user === null) {
       navigate("/login");
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="createPostPage">
@@ -61,10 +65,10 @@ function CreatePost({ isAuth }) {
             }}
           />
         </div>
-        <button onClick={createPost}> Submit Post</button>
+        <button onClick={createRecipe}> Submit Post</button>
       </div>
     </div>
   );
 }
 
-export default CreatePost;
+export default CreateRecipe;
