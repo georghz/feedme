@@ -1,28 +1,32 @@
-import React from 'react'
+import React from "react";
+import { useContext, } from 'react'
 import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
-export default function DeleteRecipe({post, isAuth, triggerUpdate}) {
-    
-    const deletePost = async (id) => {
-        const postDoc = doc(db, "posts", id);
-        await deleteDoc(postDoc).then(() => {  
-          triggerUpdate();
-        });
-      };
-    
-    return (
-        <div className="deletePost">
-        {isAuth && post.author.id === auth.currentUser.uid && (
-          <button
-            onClick={() => {
-              deletePost(post.id);
-            }}
-          >
-            {" "}
-            &#128465;
-          </button>
-        )}
-      </div>
-    )
+import { AuthContext } from "../App";
+
+export default function DeleteRecipe({ recipe, triggerUpdate }) {
+  const user = useContext(AuthContext);
+
+  const deletePost = async (id) => {
+    const postDoc = doc(db, "recipes", id);
+    await deleteDoc(postDoc).then(() => {
+      triggerUpdate();
+    });
+  };
+
+  return (
+    <div className="deletePost">
+      {user && recipe.author.id === user.uid && (
+        <button
+          onClick={() => {
+            deletePost(recipe.id);
+          }}
+        >
+          {" "}
+          &#128465;
+        </button>
+      )}
+    </div>
+  );
 }

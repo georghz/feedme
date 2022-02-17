@@ -1,9 +1,9 @@
-import { useContext, } from 'react'
 import { Link } from "react-router-dom"
 
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 
+import { useContext, } from 'react'
 import { AuthContext } from "../App"
 
 export default function Nav() {

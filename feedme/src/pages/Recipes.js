@@ -20,12 +20,12 @@ function Recipes() {
   useEffect(() => {
     getRecipes();
   }, []);  
-  
+
   return (
     <div className="homePage">
       {recipeLists.map((recipe) => {
         return (
-          <Recipe recipe={recipe} isAuth={isAuth} triggerUpdate={getRecipes}/>
+          <Recipe recipe={recipe} triggerUpdate={getRecipes}/>
         );
       })}
     </div>

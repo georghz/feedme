@@ -12,7 +12,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 
 import Recipes from "./pages/Recipes";
-import CreatePost from "./pages/CreateRecipe";
+import CreateRecipe from "./pages/CreateRecipe";
 import Login from "./pages/Login";
 import Nav from "./components/Nav"
 
@@ -31,7 +31,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="" element={<Recipes />} />
-          <Route path="/createrecipe" element={<CreatePost />} />
+          <Route path="/createrecipe" element={<CreateRecipe />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
