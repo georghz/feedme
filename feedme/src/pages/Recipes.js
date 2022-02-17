@@ -8,6 +8,9 @@ import { db, auth } from "../firebase-config";
 
 import Recipe from "../components/Recipe";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 function Recipes() {
   const [recipeLists, setRecipeList] = useState([]);
   const recipesCollectionRef = collection(db, "recipes");
