@@ -18,13 +18,14 @@ export default function Nav() {
     return (
         <div className="navBar">
             <nav>
-            <Link to="/"> Home </Link>
+            <Link to="/"> Feed </Link>
 
             {(user === null) ? (
                 <Link to="/login"> Login </Link>
             ) : (
                 <>
-                <Link to="/createrecipe"> Create Post </Link>
+                <Link to="/createrecipe"> Create Recipe </Link>
+                <Link to="/likedrecipes"> Liked Recipes </Link>
                 <button onClick={signUserOut}> Log Out</button>
                 </>
             )}

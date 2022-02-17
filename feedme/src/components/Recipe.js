@@ -1,6 +1,7 @@
 import React from "react";
 import DeleteRecipe from "./DeleteRecipe";
 import RecipeLike from "./RecipeLike";
+import './Recipe.css'
 
 export default function Recipe({ recipe, triggerUpdate }) {
   return (

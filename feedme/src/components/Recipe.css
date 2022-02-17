@@ -1,0 +1,39 @@
+.recipe .recipeHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .recipeImg {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+  }
+  
+  .recipeHeader .title {
+    flex: 50%;
+  }
+  .recipeHeader .deleteRecipe {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .deleteRecipe button {
+    border: none;
+  
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .recipe .recipeTextContainer {
+    word-wrap: break-word;
+    height: auto;
+    max-height: 400px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+  }
