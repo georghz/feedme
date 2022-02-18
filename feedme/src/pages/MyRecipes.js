@@ -17,34 +17,20 @@ export default function MyRecipes() {
       collection(db, "recipes"),
       where("author.id", "==", user.uid)
     );
-
     const data = await getDocs(q);
     setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   useEffect(() => {
-    /*if (!isAuth) {
-      navigate("/login");  Må ha med dette på et punkt slik at vi hindrer at brukere som ikke
-    }                      er logget inn kan gå til ./likedrecipes */
     getMyPosts();
-    //checkForEmptyLikedList();
   }, []);
-
-  /*
-  function checkForEmptyLikedList (){
-    console.log(postLists.length);
-    if (postLists.length == 0) {          Sjekke hvis antall likte oppskrifter er null, så bør vi vise
-      console.log("Zero likes!");         dette på skjermen til brukeren. Ikke fikset enda
-    }
-  }*/
 
   return (
     <div className="homePage">
-      {postLists.map((recipe) => {
-        return (
-    <Recipe recipe={recipe} triggerUpdate={getMyPosts}/>
-  ); 
-        })}
-  </div>
+      {postLists.length === 0 ? <h1>You have not created any recipes yet ... </h1> :
+      postLists.map((recipe) => {
+        return <Recipe recipe={recipe} triggerUpdate={getMyPosts}/> 
+      })}
+    </div>
   );
 }
