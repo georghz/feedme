@@ -1,11 +1,8 @@
 
 import "./Recipes.css";
-
 import React, { useEffect, useState } from "react";
-
 import { getDocs, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
-
 import Recipe from "../components/Recipe";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
