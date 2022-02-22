@@ -1,0 +1,27 @@
+@import url("http://fonts.cdnfonts.com/css/league-spartan");
+
+.nav {
+  margin: 0;
+  width: 100%;
+  height: 80px;
+  background-color: rgb(253, 197, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.logo {
+  max-width: 10%;
+  position: relative;
+  left: -300px;
+}
+
+a {
+  color: rgb(227, 100, 20);
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "League Spartan", sans-serif;
+}
