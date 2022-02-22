@@ -46,3 +46,39 @@ Synligheten av disse bestemmes av en boolsk variabel som kan bruker for å velge
 På denne måten kan vi bruke collection strukturen for å lage alt fra kategorier til favorittlister
 
 ![ER-diagram](img/PU_DB.png)
+
+
+### 👑 How to use Firebase as admin  
+
+Start med å logge inn på firebase med utdelt admin-epostadresse og passord. 
+
+Som admin skal man kun trenge å bry seg om de to markerte mulighetene: 
+(img/whatToUse.png)
+
+Under Authentication og "Users" får man opp følge skjermbilde: 
+Her kan man se alle brukere som noensinne er logget inn i databasen.
+Ved å trykke "disable account" på en bruker vil brukeren ikke kunne logge inn i nettsiden.
+Ved å trykke "delete account" sletter man brukeren fra databasen, men oppskriftene vil fortsatt finnes i databasen. Brukeren vil kunne logge inn på nytt igjen dersom brukeren blir slettet, så "disable account" er å foretrekke hvis man skal hindre uønskede brukere tilgang. 
+(img/deleteUsers.png)
+
+Under Firestore Database og "Data" finner man alle dataen lagret i databasen. 
+(img/overview.png)
+
+Man kan enkelt sortere på ulike egenskaper i databasen ved å velge filter-ikonet. 
+(img/filterOverview.png)
+
+For å finne alle innleggene til en bestemt bruker kan man skrive "author.name", og legge til en "condition" om at dette skal være lik "Mats Klevstad". Da kommer alle innleggene til brukeren Mats Klevstad opp. Det er viktig å merke seg at søkefunksjonen er sensitiv på små og store bokstaver, så man må skrive akkurat det som er synlig på nettsiden. 
+(img/filter.png)
+(img/resultFromFilter.png)
+
+
+Eller så kan man f.eks. finne alle oppskrifter som heter "Kjøttkaker". 
+(img/filter2.png)
+
+Da blir resultatet slik:
+Her kan man også klikke seg inn på en bestemt oppskrift og endrer attributter, som f.eks. nedenfor ved å endre tittelen til "Kjøttboller". Dette er mulig overalt i selve oppskrift-databasen, og alt man endrer på vil vises i nettsiden. 
+(img/resultFromFilter2.png)
+
+Mulighetene er veldig store og man kan filtere på masse ulikt. Skulle det være noen spørsmål er det bare å ta kontakt med oss! 
+
+
