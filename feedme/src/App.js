@@ -21,7 +21,7 @@ import MyRecipes from "./pages/MyRecipes";
 export const AuthContext = createContext();
 
 function App() {
-  const [user, setUser] = useState(auth.currentUser);
+  const [user, setUser] = useState(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {setUser(user)})
