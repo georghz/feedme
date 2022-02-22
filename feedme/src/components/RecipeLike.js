@@ -7,18 +7,18 @@ import { AuthContext } from "../App";
 
 export default function RecipeLike({ recipe, triggerUpdate }) {
   const user = useContext(AuthContext);
-  const checkIfAlreadyLiked = recipe.likedBy.includes(user.uid);
+  const checkIfAlreadyLiked = recipe.likedBy.includes(user?.uid);
 
   const handleLike = async (id) => {
     const postDoc = doc(db, "recipes", id);
     let likedByList = recipe.likedBy;
     let value = 0;
     if (checkIfAlreadyLiked) {
-      const indexToBeRemoved = recipe.likedBy.indexOf(user.uid);
+      const indexToBeRemoved = recipe.likedBy.indexOf(user?.uid);
       likedByList.splice(indexToBeRemoved, 1);
       value = -1;
     } else {
-      likedByList = [...recipe.likedBy, user.uid];
+      likedByList = [...recipe.likedBy, user?.uid];
       value = 1;
     }
     updateDoc(postDoc, {

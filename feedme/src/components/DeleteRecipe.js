@@ -17,7 +17,7 @@ export default function DeleteRecipe({ recipe, triggerUpdate }) {
 
   return (
     <div className="deletePost">
-      {user && recipe.author.id === user.uid && (
+      {user && recipe.author.id === user?.uid && (
         <button
           onClick={() => {
             deletePost(recipe.id);

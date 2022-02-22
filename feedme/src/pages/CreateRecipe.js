@@ -78,8 +78,7 @@ export default function CreateRecipe() {
       steps: recipeSteps,
       likes: 0,
       likedBy: [],
-      author: { name: user.displayName, id: user.uid },
-      imgURL: url
+      author: { name: user.displayName, id: user?.uid },
     });
     navigate("/");
   };
