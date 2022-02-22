@@ -1,6 +1,6 @@
 import React from "react";
 import { auth, provider } from "../firebase-config";
-import { signOut } from "firebase/auth";
+import { signOut, deleteUser } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./ProfilePage.css";
 
@@ -18,6 +18,10 @@ function ProfilePage() {
     });
   };
 
+  const deletUser = () => {
+    deleteUser(user);
+  };
+
   return (
     <div className="profilePage">
       {user === null ? (
@@ -25,6 +29,7 @@ function ProfilePage() {
         ) : (
           <>
             <button onClick={signUserOut}> Log Out</button>
+            <button onClick={deletUser}> Delete User </button>
           </>
         )}
     </div>
