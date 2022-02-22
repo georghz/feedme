@@ -26,7 +26,8 @@ export default function LikedRecipes() {
       Navigate("/login")
     }*/
     getLikedPosts();
-  }, []);
+    //checkForEmptyLikedList();
+  }, [user]);
 
 
 
