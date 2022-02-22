@@ -22,7 +22,7 @@ function CreateRecipe() {
       steps: recipeSteps,
       likes: 0,
       likedBy: [],
-      author: { name: user.displayName, id: user.uid },
+      author: { name: user.displayName, id: user?.uid },
     });
     navigate("/");
   };
