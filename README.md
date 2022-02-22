@@ -69,6 +69,7 @@ Man kan enkelt sortere på ulike egenskaper i databasen ved å velge filter-ikon
 ![filterOverview](img/filterOverview.png)
 
 For å finne alle innleggene til en bestemt bruker kan man skrive "author.name", og legge til en "condition" om at dette skal være lik "Mats Klevstad". Da kommer alle innleggene til brukeren Mats Klevstad opp. Det er viktig å merke seg at søkefunksjonen er sensitiv på små og store bokstaver, så man må skrive akkurat det som er synlig på nettsiden. 
+
 ![fitler](img/filter.png)
 ![resultFromFilter](img/resultFromFilter.png)
 
@@ -82,7 +83,7 @@ Her kan man også klikke seg inn på en bestemt oppskrift og endrer attributter,
 ![resultFromFilter2](img/resultFromFilter2.png)
 
 
-For å slette oppskrifter trykker man på de tre prikkene til en oppskrift og trykker så på "Delete document". Da forsvinner oppskriften fra databasen og er ikk lenger synlig på nettsiden. 
+For å slette oppskrifter trykker man på de tre prikkene til en oppskrift og trykker så på "Delete document". Da forsvinner oppskriften fra databasen og er ikke lenger synlig på nettsiden. 
 ![deleteRecipe](img/deleteRecipe.png)
 
 
