@@ -24,6 +24,7 @@ export default function Nav() {
           <>
             <Link to="/createrecipe"> Create Recipe </Link>
             <Link to="/likedrecipes"> Liked Recipes </Link>
+            <Link to="/myrecipes"> My Recipes </Link>
           </>
         )}
         <Link to="/profilepage"> <FontAwesomeIcon icon={faUser} /> </Link>
