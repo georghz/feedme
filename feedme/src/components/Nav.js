@@ -26,6 +26,7 @@ export default function Nav() {
                 <>
                 <Link to="/createrecipe"> Create Recipe </Link>
                 <Link to="/likedrecipes"> Liked Recipes </Link>
+                <Link to="/myrecipes"> My Recipes </Link>
                 <button onClick={signUserOut}> Log Out</button>
                 </>
             )}
