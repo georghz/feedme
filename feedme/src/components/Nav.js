@@ -18,18 +18,22 @@ export default function Nav() {
     <div className="navBar">
       <nav className="nav">
         <img className="logo" src={logo} alt="Logo" />
+        &nbsp;&nbsp;&nbsp;
         <Link to="/"> Feed </Link>
-
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         {user === null ? (
           <></>
         ) : (
           <>
             <Link to="/createrecipe"> Create Recipe </Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link to="/likedrecipes"> Liked Recipes </Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link to="/myrecipes"> My Recipes </Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </>
         )}
-        <Link to="/profilepage">
+        <Link className="pb" to="/profilepage">
           {" "}
           <FontAwesomeIcon icon={faUser} />{" "}
         </Link>
