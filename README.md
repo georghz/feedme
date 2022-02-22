@@ -45,4 +45,4 @@ Vi kan videre lage vilkårlig antall samlinger og kategorier ved å opprette sam
 Synligheten av disse bestemmes av en boolsk variabel som kan bruker for å velge om samlingen skal være offentlig tilgjenglig.
 På denne måten kan vi bruke collection strukturen for å lage alt fra kategorier til favorittlister
 
-![ER-diagram](PU_DB.png)
+![ER-diagram](img/PU_DB.png)
