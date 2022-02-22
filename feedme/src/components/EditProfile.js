@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
-import "./CreateRecipe.css";
+import "./EditProfile.css";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
 
 function CreateRecipe() {
   const user = useContext(AuthContext);
-  const [recipeTitle, setRecipeTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [recipeSteps, setRecipeSteps] = useState("");
 
+  const [profile, setProfile] = useState();
+  
   const postsCollectionRef = collection(db, "recipes");
   let navigate = useNavigate();
 

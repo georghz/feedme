@@ -15,7 +15,7 @@ export default function LikedRecipes() {
   const getLikedPosts = async () => {
     const q = query(
       collection(db, "recipes"),
-      where("likedBy", "array-contains", user.uid)
+      where("likedBy", "array-contains", user?.uid)
     );
     const data = await getDocs(q);
     setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));

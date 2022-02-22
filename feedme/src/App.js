@@ -13,7 +13,7 @@ import { auth } from "./firebase-config";
 
 import Recipes from "./pages/Recipes";
 import CreateRecipe from "./pages/CreateRecipe";
-import Login from "./pages/Login";
+import ProfilePage from "./pages/ProfilePage";
 import Nav from "./components/Nav"
 import LikedRecipes from "./pages/LikedRecipes";
 import MyRecipes from "./pages/MyRecipes";
@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path="" element={<Recipes />} />
           <Route path="/createrecipe" element={<CreateRecipe />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/profilepage" element={<ProfilePage />} />
           <Route path="/likedrecipes" element={<LikedRecipes />} />
           <Route path="/myrecipes" element={<MyRecipes />} />
         </Routes>
