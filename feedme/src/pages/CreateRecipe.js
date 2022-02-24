@@ -136,7 +136,7 @@ export default function CreateRecipe() {
             onImageChange(e);
           }}
         />
-        <button onClick={uploadRecipe}> Submit recipe</button>
+        <button onClick={uploadRecipe} disabled={recipeTitle === ""}> Submit recipe</button>
       </div>
     </div>
   );
