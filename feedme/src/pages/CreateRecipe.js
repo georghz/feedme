@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp} from "firebase/firestore";
 import { db, auth , storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref , uploadBytes , getDownloadURL } from "firebase/storage";
@@ -61,8 +61,9 @@ export default function CreateRecipe() {
           createRecipe(ret)
         });
       });
+    } else {
+      createRecipe(null)
     };
-    return url
   };
 
 
@@ -79,7 +80,9 @@ export default function CreateRecipe() {
       likes: 0,
       likedBy: [],
       author: { name: user.displayName, id: user?.uid },
-      imgURL: url
+      imgURL: url,
+      createdAt: serverTimestamp(),
+      modifiedAt: serverTimestamp()
     });
     navigate("/");
   };
