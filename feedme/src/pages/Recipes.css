@@ -6,6 +6,8 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+  font-family: "League Spartan", sans-serif;
+
 }
 
 .homePage .recipe {
