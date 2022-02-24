@@ -30,7 +30,7 @@ export default function Nav() {
             <Link to="/likedrecipes"> Liked Recipes </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link to="/myrecipes"> My Recipes </Link>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;
           </>
         )}
         <Link className="pb" to="/profilepage">
