@@ -7,8 +7,11 @@
   .recipeImg {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 400px;
+    margin: 0 auto;
   }
   
   .recipeHeader .title {
