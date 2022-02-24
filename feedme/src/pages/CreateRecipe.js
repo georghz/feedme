@@ -59,8 +59,9 @@ export default function CreateRecipe() {
           createRecipe(ret);
         });
       });
+    } else {
+      createRecipe(null);
     }
-    return url;
   };
 
   const recipesCollectionRef = collection(db, "recipes");
