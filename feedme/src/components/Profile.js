@@ -7,19 +7,17 @@ import { db } from "../firebase-config";
 
 export default function Profile() {
   const user = useContext(AuthContext);
-  let createdValue = 0;
-  let likedValue = 0;
+  const [createdValue, setCreatedValue] = useState([]);
+  const [likedValue, setLikedValue] = useState([]);
 
   const getCreatedRecipesCount = async () => {
     const q = query(
       collection(db, "recipes"),
       where("author.id", "==", user.uid)
     );
-    const data = await getDocs(q);
-    console.log(data.size);
-    createdValue = data.size;
-    console.log("Created: " + createdValue);
-    return createdValue;
+    return getDocs(q).then((data) => {
+      return data.size;
+    });
   };
 
   const getLikedPostsCount = async () => {
@@ -27,26 +25,27 @@ export default function Profile() {
       collection(db, "recipes"),
       where("likedBy", "array-contains", user?.uid)
     );
-    const data = await getDocs(q);
-    likedValue = data.size;
-    console.log("LIKES = " + likedValue);
-    return likedValue;
+
+    return getDocs(q).then((data) => {
+      return data.size;
+    });
   };
-  
+
   useEffect(() => {
-    getCreatedRecipesCount();
-    getLikedPostsCount();
+    getCreatedRecipesCount().then((t) => setCreatedValue(t));
+    getLikedPostsCount().then((t) => setLikedValue(t));
   }, []);
 
   return (
-    
     <div className="profileBox">
-      <img src={user.photoURL}/>
-      <p>{user.displayName}</p>
-      <p>{user.email}</p>
-      <p>Total recipes created: {getCreatedRecipesCount}</p> 
-      <p>Total likes given: {getLikedPostsCount}</p>
+      <img src={user.photoURL} />
+      <h4>
+        {user.displayName} {user.email}
+      </h4>
+      <p>
+        Total recipes created: {createdValue} <br /> Total likes given:{" "}
+        {likedValue}
+      </p>
     </div>
-    
   );
 }

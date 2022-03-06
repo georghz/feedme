@@ -13,7 +13,7 @@ function ProfilePage() {
 
   const signUserOut = () => {
     signOut(auth).then(() => {
-      window.location.pathname = "/login";
+      window.location.pathname = "/profilepage";
     });
   };
 
@@ -23,19 +23,16 @@ function ProfilePage() {
 
   return (
     <div className="profilePage">
-    
       {user === null ? (
-          <Login />
-        ) : (
-          <>
-            <Profile></Profile>
-            <button onClick={signUserOut}> Log Out</button>
-            <button onClick={deletUser}> Delete User </button>
-          </>
-        )}
-      
+        <Login />
+      ) : (
+        <>
+          <Profile></Profile>
+          <button onClick={signUserOut}> Log Out</button>
+          <button onClick={deletUser}> Delete User </button>
+        </>
+      )}
     </div>
-   
   );
 }
 
