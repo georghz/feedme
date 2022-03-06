@@ -3,9 +3,8 @@ import { auth, provider } from "../firebase-config";
 import { signOut, deleteUser } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./ProfilePage.css";
-
 import Login from "../components/Login";
-
+import Profile from "../components/Profile";
 import { useContext } from "react";
 import { AuthContext } from "../App";
 
@@ -24,15 +23,19 @@ function ProfilePage() {
 
   return (
     <div className="profilePage">
+    
       {user === null ? (
           <Login />
         ) : (
           <>
+            <Profile></Profile>
             <button onClick={signUserOut}> Log Out</button>
             <button onClick={deletUser}> Delete User </button>
           </>
         )}
+      
     </div>
+   
   );
 }
 
