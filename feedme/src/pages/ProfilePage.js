@@ -2,7 +2,14 @@ import React from "react";
 import { auth, db } from "../firebase-config";
 import { signOut, deleteUser } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { getDocs, collection, query, where, doc, updateDoc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  query,
+  where,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import "./ProfilePage.css";
 import Login from "../components/Login";
 import Profile from "../components/Profile";
@@ -27,20 +34,18 @@ function ProfilePage() {
   };
 
   const updateDeletedPosts = async () => {
-    
-
-    for (let i = 0; i < postLists.length; i++) { 
+    for (let i = 0; i < postLists.length; i++) {
       console.log("Id-en til den unike som blir loopet " + postLists[i].id);
-      console.log("Brukeren sin post som slettes har så mange likes : " + postLists[i].likes)
+      console.log(
+        "Brukeren sin post som slettes har så mange likes : " +
+          postLists[i].likes
+      );
       const toBeUpdated = doc(db, "recipes", postLists[i].id);
       await updateDoc(toBeUpdated, {
-      author : {name: "NON-EXISTING USER", id: null}
-     
-    })
-   
-  }
-}
-
+        author: { name: "NON-EXISTING USER", id: null },
+      });
+    }
+  };
 
   const getMyPosts = async () => {
     const q = query(
@@ -54,8 +59,6 @@ function ProfilePage() {
   useEffect(() => {
     getMyPosts();
   }, []);
-
-
 
   return (
     <div className="profilePage">
