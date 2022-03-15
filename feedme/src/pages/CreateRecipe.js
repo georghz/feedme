@@ -3,7 +3,9 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth, storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import style from "./CreateRecipe.css";
+import "./CreateRecipe.css";
+
+import InputIngredients from "../components/InputIngredients";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
@@ -13,7 +15,7 @@ export default function CreateRecipe() {
 
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [recipeSteps, setRecipeSteps] = useState("");
+  const [recipeSteps, setRecipeSteps] = useState([""]);
   //const [images, setImages] = useState([]);
   //const [imageURLs, setImageURLs] = useState([]);
 
@@ -70,6 +72,7 @@ export default function CreateRecipe() {
   const createRecipe = async (url) => {
     console.log(url);
     //await uploadToFirebase()
+    console.log(recipeSteps)
     await addDoc(recipesCollectionRef, {
       title: recipeTitle,
       recipeText: ingredients,
@@ -111,7 +114,8 @@ export default function CreateRecipe() {
             }}
           />
         </div>
-        <div className="inputGp">
+        {/*  */}
+        {/* <div className="inputGp">
           <label> Ingredients:</label>
           <textarea
             placeholder="Ingredients..."
@@ -119,7 +123,9 @@ export default function CreateRecipe() {
               setRecipeSteps(event.target.value);
             }}
           />
-        </div>
+        </div> */}
+        <InputIngredients ingredientsList={recipeSteps} setIngredientsList={setRecipeSteps} />
+        {/*  */}
         <div className="inputGp">
           <label> Steps:</label>
           <textarea
