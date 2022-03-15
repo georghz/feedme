@@ -67,12 +67,14 @@ function ProfilePage() {
       ) : (
         <>
           <Profile></Profile>
-          <button onClick={signUserOut}> Log Out</button>
-          <button onClick={deletUser}> Delete User </button>
+          <button style={{width: "90px"}} onClick={signUserOut}> Log Out</button>
+          <button style={{width: "90px"}} onClick={deletUser}> Delete User </button>
         </>
       )}
     </div>
   );
 }
+
+
 
 export default ProfilePage;
