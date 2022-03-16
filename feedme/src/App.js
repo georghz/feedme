@@ -5,10 +5,10 @@
 
 import "./App.css";
 
-import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
-import { useState, useEffect, createContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect, createContext, useContext } from "react";
 
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 
 import Recipes from "./pages/Recipes";
@@ -17,11 +17,16 @@ import ProfilePage from "./pages/ProfilePage";
 import Nav from "./components/Nav"
 import LikedRecipes from "./pages/LikedRecipes";
 import MyRecipes from "./pages/MyRecipes";
+import { ThemeContext } from "./contexts/theme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 export const AuthContext = createContext();
 
 function App() {
   const [user, setUser] = useState(true);
+  const [{theme, isDark}, toggleTheme] = useContext(ThemeContext);
+  console.log("theme", theme); 
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {setUser(user)})
@@ -30,7 +35,16 @@ function App() {
   return (
     <AuthContext.Provider value={user}>
       <Router>
-        <Nav />
+        <Nav /> 
+        <div
+        className="app"
+        style={{backgroundColor: theme.backgroundColor, color: theme.color}}
+      >
+        <div 
+          >  
+          <button onClick={toggleTheme}> 
+          <FontAwesomeIcon icon={!isDark ? faMoon : faSun} /> 
+           </button>
         <Routes>
           <Route path="" element={<Recipes />} />
           <Route path="/createrecipe" element={<CreateRecipe />} />
@@ -38,6 +52,8 @@ function App() {
           <Route path="/likedrecipes" element={<LikedRecipes />} />
           <Route path="/myrecipes" element={<MyRecipes />} />
         </Routes>
+        </div>
+    </div>
       </Router>
     </AuthContext.Provider>
   );
