@@ -18,7 +18,7 @@ export default function Recipe({ recipe, triggerUpdate }) {
       </div>
 
       <b>Ingredients: </b>
-      <div className="recipeIngredientContainer"> {recipe.steps} </div>
+      <div className="recipeIngredientContainer"> {recipe.steps.map((ing) => {return (<>{ing}<br/></>)})} </div>
       <b> Steps: </b>
       <div className="recipeTextContainer"> {recipe.recipeText} </div>
       <h3>@{recipe.author.name}</h3>
