@@ -17,7 +17,7 @@ export default function CreateRecipe() {
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [recipeSteps, setRecipeSteps] = useState([""]);
-  const [categories, setCategories] = useState([""]);
+  const [categories, setCategories] = useState([]);
   //const [images, setImages] = useState([]);
   //const [imageURLs, setImageURLs] = useState([]);
 
@@ -138,7 +138,7 @@ export default function CreateRecipe() {
             }}
           />
         </div>
-        <Categories categories={categories} />
+        <Categories categoriesList={categories} setCategoryList={setCategories} />
         <input
           type="file"
           accept="image/x-png,image/jpeg"
