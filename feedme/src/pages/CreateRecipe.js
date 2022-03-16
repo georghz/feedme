@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db, auth, storage } from "../firebase-config";
+import { addDoc, collection, serverTimestamp} from "firebase/firestore";
+import { db, auth , storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./CreateRecipe.css";
@@ -62,8 +62,8 @@ export default function CreateRecipe() {
         });
       });
     } else {
-      createRecipe(null);
-    }
+      createRecipe(null)
+    };
   };
 
   const recipesCollectionRef = collection(db, "recipes");
@@ -81,6 +81,8 @@ export default function CreateRecipe() {
       likedBy: [],
       author: { name: user.displayName, id: user?.uid },
       imgURL: url,
+      createdAt: serverTimestamp(),
+      modifiedAt: serverTimestamp()
     });
     navigate("/");
   };
