@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function Categories({ categoriesList, setCategoryList }) {
   //Working code
 
-  /* const [dinnerChecked, setDinnerChecked] = React.useState(false);
+  const [dinnerChecked, setDinnerChecked] = React.useState(false);
   const [breakfastChecked, setBreakfastChecked] = React.useState(false);
   const [categoriesChecked, setCategoriesChecked] = useState([]);
 
@@ -51,10 +51,10 @@ export default function Categories({ categoriesList, setCategoryList }) {
       />
     </div>
   );
-}*/
+}
 
   // Not working, but trying to get this to work. This code is on a cleaner format
-
+/*
   const recipeCategory = {
     dinner: "dinner",
     breakfast: "breakfast",
@@ -85,5 +85,5 @@ return (
         label={recipeCategory}
         onChange={(value) => handleCheck(value, recipeCategory)}
       /> ))
-  );
-}
+  );*/
+

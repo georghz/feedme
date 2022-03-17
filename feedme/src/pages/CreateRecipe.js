@@ -84,7 +84,7 @@ export default function CreateRecipe() {
       author: { name: user.displayName, id: user?.uid },
       imgURL: url,
       createdAt: serverTimestamp(),
-      modifiedAt: serverTimestamp()
+      modifiedAt: serverTimestamp(),
       categories : categories,
     });
     navigate("/");
