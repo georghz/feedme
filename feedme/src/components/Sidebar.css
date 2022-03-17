@@ -1,0 +1,13 @@
+.hei {
+    position: fixed;
+    margin: -20px 0% 0% 0%;
+    width: 10%;
+    height: 100%;
+    background-color: rgb(220, 220, 220);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+  }

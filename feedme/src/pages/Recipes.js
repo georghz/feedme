@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import Recipe from "../components/Recipe";
+import Sidebar from "../components/Sidebar";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -23,6 +24,7 @@ function Recipes() {
 
   return (
     <div className="homePage">
+       <Sidebar/>
       {recipeLists.map((recipe) => {
         return (
           <Recipe recipe={recipe} triggerUpdate={getRecipes}/>
