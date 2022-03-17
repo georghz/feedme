@@ -14,8 +14,8 @@ export default function CreateRecipe() {
   const user = useContext(AuthContext);
 
   const [recipeTitle, setRecipeTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [recipeSteps, setRecipeSteps] = useState([""]);
+  const [ingredients, setIngredients] = useState([""]);
+  const [recipeSteps, setRecipeSteps] = useState("");
   //const [images, setImages] = useState([]);
   //const [imageURLs, setImageURLs] = useState([]);
 
@@ -124,14 +124,14 @@ export default function CreateRecipe() {
             }}
           />
         </div> */}
-        <InputIngredients ingredientsList={recipeSteps} setIngredientsList={setRecipeSteps} />
+        <InputIngredients ingredientsList={ingredients} setIngredientsList={setIngredients} />
         {/*  */}
         <div className="inputGp">
           <label> Steps:</label>
           <textarea
             placeholder="Steps..."
             onChange={(event) => {
-              setIngredients(event.target.value);
+              setRecipeSteps(event.target.value);
             }}
           />
         </div>
