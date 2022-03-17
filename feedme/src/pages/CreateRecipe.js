@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db, auth, storage } from "../firebase-config";
+import { addDoc, collection, serverTimestamp} from "firebase/firestore";
+import { db, auth , storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./CreateRecipe.css";
@@ -15,8 +15,8 @@ export default function CreateRecipe() {
   const user = useContext(AuthContext);
 
   const [recipeTitle, setRecipeTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [recipeSteps, setRecipeSteps] = useState([""]);
+  const [ingredients, setIngredients] = useState([""]);
+  const [recipeSteps, setRecipeSteps] = useState("");
   const [categories, setCategories] = useState([]);
   //const [images, setImages] = useState([]);
   //const [imageURLs, setImageURLs] = useState([]);
@@ -64,8 +64,8 @@ export default function CreateRecipe() {
         });
       });
     } else {
-      createRecipe(null);
-    }
+      createRecipe(null)
+    };
   };
 
   const recipesCollectionRef = collection(db, "recipes");
@@ -83,6 +83,8 @@ export default function CreateRecipe() {
       likedBy: [],
       author: { name: user.displayName, id: user?.uid },
       imgURL: url,
+      createdAt: serverTimestamp(),
+      modifiedAt: serverTimestamp()
       categories : categories,
     });
     navigate("/");
@@ -127,14 +129,14 @@ export default function CreateRecipe() {
             }}
           />
         </div> */}
-        <InputIngredients ingredientsList={recipeSteps} setIngredientsList={setRecipeSteps} />
+        <InputIngredients ingredientsList={ingredients} setIngredientsList={setIngredients} />
         {/*  */}
         <div className="inputGp">
           <label> Steps:</label>
           <textarea
             placeholder="Steps..."
             onChange={(event) => {
-              setIngredients(event.target.value);
+              setRecipeSteps(event.target.value);
             }}
           />
         </div>
