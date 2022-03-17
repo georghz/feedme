@@ -2,8 +2,18 @@ import React from "react";
 import DeleteRecipe from "./DeleteRecipe";
 import RecipeLike from "./RecipeLike";
 import './Recipe.css'
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
+import { useContext } from "react";
+import { AuthContext } from "../App";
 
 export default function Recipe({ recipe, triggerUpdate }) {
+
+  const user = useContext(AuthContext);
+
+
   return (
     <div className="recipe" key={recipe.id}>
       <img className="recipeImg" src={recipe.imgURL} alt=""/>
@@ -23,6 +33,9 @@ export default function Recipe({ recipe, triggerUpdate }) {
       <div className="recipeTextContainer"> {recipe.steps} </div>
       <h3>@{recipe.author.name}</h3>
       <RecipeLike recipe={recipe} triggerUpdate={triggerUpdate} />
+      {user && recipe.author.id === user?.uid && (
+        <Link to={`/editrecipe/${recipe.id}`}><FontAwesomeIcon icon={faPenToSquare} style={{color:"black"}} /></Link>
+      )}
     </div>
   );
 }

@@ -17,6 +17,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Nav from "./components/Nav"
 import LikedRecipes from "./pages/LikedRecipes";
 import MyRecipes from "./pages/MyRecipes";
+import EditRecipe from "./pages/EditRecipe";
 
 export const AuthContext = createContext();
 
@@ -37,6 +38,8 @@ function App() {
           <Route path="/profilepage" element={<ProfilePage />} />
           <Route path="/likedrecipes" element={<LikedRecipes />} />
           <Route path="/myrecipes" element={<MyRecipes />} />
+          <Route path="/editrecipe/:recipeID" element={<EditRecipe />}
+        />
         </Routes>
       </Router>
     </AuthContext.Provider>
