@@ -3,11 +3,14 @@ import { createContext, useEffect, useState } from "react";
 const themes = {
     dark: {
         backgroundColor: "black", 
-        color: "white", 
+        color: "white",
+        textboxColor: '#1A1A1A'
+        
     }, 
     light: {
         backgroundColor: "white", 
         color: "black", 
+        textboxColor: '#FEFEFE'
     },
 }; 
 
