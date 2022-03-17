@@ -4,12 +4,15 @@ import { db, auth, storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import style from "./CreateRecipe.css";
+import { ThemeContext } from "../contexts/theme";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
 
 export default function CreateRecipe() {
   const user = useContext(AuthContext);
+  const [{theme, isDark}, toggleTheme] = useContext(ThemeContext);
+
 
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -99,8 +102,9 @@ export default function CreateRecipe() {
 */
 
   return (
+    
     <div className="createRecipePage">
-      <div className="cpContainer">
+      <div className="cpContainer" style={{backgroundColor: theme.textboxColor}}>
         <h1>Create A Recipe</h1>
         <div className="inputGp">
           <label> Recipe Title:</label>

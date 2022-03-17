@@ -4,12 +4,13 @@ import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon,faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
 import styles from "./Nav.css";
 import logo from "./../logo2.png";
+import { ThemeProvider } from "../contexts/theme"; 
 
 export default function Nav() {
   const user = useContext(AuthContext);
@@ -33,6 +34,9 @@ export default function Nav() {
             &nbsp;&nbsp;&nbsp;
           </>
         )}
+        <button onClick={ThemeProvider.toggleTheme}> 
+          <FontAwesomeIcon icon={!ThemeProvider.isDark ? faMoon : faSun} /> 
+           </button>
         <Link className="pb" to="/profilepage">
           {" "}
           <FontAwesomeIcon icon={faUser} />{" "}

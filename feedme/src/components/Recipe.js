@@ -2,10 +2,14 @@ import React from "react";
 import DeleteRecipe from "./DeleteRecipe";
 import RecipeLike from "./RecipeLike";
 import './Recipe.css'
+import {ThemeContext} from '../contexts/theme'
+import { useContext } from "react";
 
 export default function Recipe({ recipe, triggerUpdate }) {
+  const [{theme, isDark}, toggleTheme] = useContext(ThemeContext);
+
   return (
-    <div className="recipe" key={recipe.id}>
+    <div className="recipe" key={recipe.id} style={{backgroundColor: theme.textboxColor}}>
       <img className="recipeImg" src={recipe.imgURL} alt=""/>
       <div className="recipeHeader">
         <div className="title">

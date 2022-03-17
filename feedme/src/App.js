@@ -42,9 +42,7 @@ function App() {
       >
         <div 
           >  
-          <button onClick={toggleTheme}> 
-          <FontAwesomeIcon icon={!isDark ? faMoon : faSun} /> 
-           </button>
+          
         <Routes>
           <Route path="" element={<Recipes />} />
           <Route path="/createrecipe" element={<CreateRecipe />} />
