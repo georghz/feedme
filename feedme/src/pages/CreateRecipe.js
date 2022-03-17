@@ -6,6 +6,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./CreateRecipe.css";
 
 import InputIngredients from "../components/InputIngredients";
+import Categories from "../components/Categories";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
@@ -16,6 +17,7 @@ export default function CreateRecipe() {
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState([""]);
   const [recipeSteps, setRecipeSteps] = useState("");
+  const [categories, setCategories] = useState([]);
   //const [images, setImages] = useState([]);
   //const [imageURLs, setImageURLs] = useState([]);
 
@@ -83,6 +85,7 @@ export default function CreateRecipe() {
       imgURL: url,
       createdAt: serverTimestamp(),
       modifiedAt: serverTimestamp()
+      categories : categories,
     });
     navigate("/");
   };
@@ -137,6 +140,7 @@ export default function CreateRecipe() {
             }}
           />
         </div>
+        <Categories categoriesList={categories} setCategoryList={setCategories} />
         <input
           type="file"
           accept="image/x-png,image/jpeg"
