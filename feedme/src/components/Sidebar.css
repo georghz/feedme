@@ -1,7 +1,7 @@
-.hei {
+.sidebar {
    /* position: fixed;*/
     margin: -20px 0% 0% 0%;
-    width: 10%;
+    width: 40%;
     height: 100%;
     background-color: rgb(220, 220, 220);
     display: flex;
