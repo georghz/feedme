@@ -7,6 +7,7 @@ import Login from "../components/Login";
 import Profile from "../components/Profile";
 import { useContext } from "react";
 import { AuthContext } from "../App";
+import { Button } from "@mui/material";
 
 function ProfilePage() {
   const user = useContext(AuthContext);
@@ -27,9 +28,13 @@ function ProfilePage() {
         <Login />
       ) : (
         <>
-          <Profile></Profile>
-          <button onClick={signUserOut}> Log Out</button>
-          <button onClick={deletUser}> Delete User </button>
+          <Profile>
+          </Profile>
+          <div className="buttonGroup">
+          <Button variant="outlined" onClick={signUserOut}> Log Out</Button>
+          <>  </>
+          <Button variant="outlined" onClick={deletUser}> Delete User </Button>
+          </div>
         </>
       )}
     </div>
