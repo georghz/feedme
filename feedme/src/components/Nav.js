@@ -10,10 +10,11 @@ import { useContext } from "react";
 import { AuthContext } from "../App";
 import styles from "./Nav.css";
 import logo from "./../logo2.png";
-import { ThemeProvider } from "../contexts/theme"; 
+import { ThemeContext } from "../contexts/theme"; 
 
 export default function Nav() {
   const user = useContext(AuthContext);
+  const [{isDark}, toggleTheme] = useContext(ThemeContext);
 
   return (
     <div className="navBar">
@@ -34,8 +35,8 @@ export default function Nav() {
             &nbsp;&nbsp;&nbsp;
           </>
         )}
-        <button onClick={ThemeProvider.toggleTheme}> 
-          <FontAwesomeIcon icon={!ThemeProvider.isDark ? faMoon : faSun} /> 
+        <button onClick={toggleTheme}> 
+          <FontAwesomeIcon icon={!isDark ? faMoon : faSun} /> 
            </button>
         <Link className="pb" to="/profilepage">
           {" "}

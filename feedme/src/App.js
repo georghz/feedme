@@ -38,11 +38,7 @@ function App() {
         <Nav /> 
         <div
         className="app"
-        style={{backgroundColor: theme.backgroundColor, color: theme.color}}
-      >
-        <div 
-          >  
-          
+        style={{backgroundColor: theme.backgroundColor, color: theme.color}}>   
         <Routes>
           <Route path="" element={<Recipes />} />
           <Route path="/createrecipe" element={<CreateRecipe />} />
@@ -51,7 +47,6 @@ function App() {
           <Route path="/myrecipes" element={<MyRecipes />} />
         </Routes>
         </div>
-    </div>
       </Router>
     </AuthContext.Provider>
   );
