@@ -18,14 +18,12 @@ import Nav from "./components/Nav"
 import LikedRecipes from "./pages/LikedRecipes";
 import MyRecipes from "./pages/MyRecipes";
 import { ThemeContext } from "./contexts/theme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 export const AuthContext = createContext();
 
 function App() {
   const [user, setUser] = useState(true);
-  const [{theme, isDark}, toggleTheme] = useContext(ThemeContext);
+  const [{theme}] = useContext(ThemeContext);
   console.log("theme", theme); 
 
   useEffect(() => {

@@ -4,11 +4,13 @@ import { AuthContext } from "../App";
 import React, { useEffect, useState } from "react";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../firebase-config";
+import { ThemeContext } from "../contexts/theme";
 
 export default function Profile() {
   const user = useContext(AuthContext);
   const [createdValue, setCreatedValue] = useState([]);
   const [likedValue, setLikedValue] = useState([]);
+  const [{theme}] = useContext(ThemeContext); 
 
   const getCreatedRecipesCount = async () => {
     const q = query(
@@ -37,7 +39,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className="profileBox">
+    <div className="profileBox" style={{backgroundColor: theme.textboxColor}}>
       <img src={user.photoURL} />
       <h4>
         {user.displayName} {user.email}

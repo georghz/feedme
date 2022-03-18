@@ -35,7 +35,7 @@ export default function Nav() {
             &nbsp;&nbsp;&nbsp;
           </>
         )}
-        <button onClick={toggleTheme}> 
+        <button className="darkmode" onClick={toggleTheme}> 
           <FontAwesomeIcon icon={!isDark ? faMoon : faSun} /> 
            </button>
         <Link className="pb" to="/profilepage">

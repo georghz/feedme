@@ -6,9 +6,11 @@ import "./EditProfile.css";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
+import { ThemeContext } from "../contexts/theme";
 
 function CreateRecipe() {
   const user = useContext(AuthContext);
+  const [{theme}] = useContext(ThemeContext); 
 
   const [profile, setProfile] = useState();
   
@@ -35,7 +37,7 @@ function CreateRecipe() {
 
   return (
     <div className="createPostPage">
-      <div className="cpContainer">
+      <div className="cpContainer" style={{backgroundColor: theme.backgroundColor, color: theme.color}}>
         <h1>Create A Recipe</h1>
         <div className="inputGp">
           <label> Recipe Title:</label>
@@ -48,7 +50,7 @@ function CreateRecipe() {
         </div>
         <div className="inputGp">
           <label> Ingredients:</label>
-          <textarea
+          <textarea 
             placeholder="Ingredients..."
             onChange={(event) => {
               setRecipeSteps(event.target.value);
@@ -64,7 +66,7 @@ function CreateRecipe() {
             }}
           />
         </div>
-        <button onClick={createRecipe}> Submit Post</button>
+        <button style={{backgroundColor: theme.backgroundColor, color: theme.color}} onClick={createRecipe}> Submit Post</button>
       </div>
     </div>
   );
