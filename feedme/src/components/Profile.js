@@ -40,7 +40,7 @@ export default function Profile() {
 
   return (
     <div className="profileBox" style={{backgroundColor: theme.textboxColor}}>
-      <img src={user.photoURL} />
+      <img src={user.photoURL} alt="User portrait"/>
       <h4>
         {user.displayName} {user.email}
       </h4>
