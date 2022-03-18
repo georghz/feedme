@@ -46,7 +46,7 @@ export default function RecipeLike({ recipe, triggerUpdate }) {
           checkIfAlreadyLiked ? <Favorite /> : <FavoriteBorderOutlined />
         }
         endIcon={recipe.likes}
-        color="primary"
+        sx={{color: theme.color, borderColor: theme.color}}
       >
         {checkIfAlreadyLiked ? "   Unlike   " : "   Like   "}
       </Button>
