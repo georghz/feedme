@@ -1,4 +1,4 @@
-/** 
+/**
  * main App component
  * contains nav bare
  */
@@ -14,7 +14,7 @@ import { auth } from "./firebase-config";
 import Recipes from "./pages/Recipes";
 import CreateRecipe from "./pages/CreateRecipe";
 import ProfilePage from "./pages/ProfilePage";
-import Nav from "./components/Nav"
+import Nav from "./components/Nav";
 import LikedRecipes from "./pages/LikedRecipes";
 import MyRecipes from "./pages/MyRecipes";
 import { ThemeContext } from "./contexts/theme";
@@ -23,27 +23,30 @@ export const AuthContext = createContext();
 
 function App() {
   const [user, setUser] = useState(true);
-  const [{theme}] = useContext(ThemeContext);
-  console.log("theme", theme); 
+  const [{ theme }] = useContext(ThemeContext);
+  console.log("theme", theme);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {setUser(user)})
-  }, []) // creates this listener once
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+  }, []); // creates this listener once
 
   return (
     <AuthContext.Provider value={user}>
       <Router>
-        <Nav /> 
+        <Nav />
         <div
-        className="app"
-        style={{backgroundColor: theme.backgroundColor, color: theme.color}}>   
-        <Routes>
-          <Route path="" element={<Recipes />} />
-          <Route path="/createrecipe" element={<CreateRecipe />} />
-          <Route path="/profilepage" element={<ProfilePage />} />
-          <Route path="/likedrecipes" element={<LikedRecipes />} />
-          <Route path="/myrecipes" element={<MyRecipes />} />
-        </Routes>
+          className="app"
+          style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+        >
+          <Routes>
+            <Route path="" element={<Recipes />} />
+            <Route path="/createrecipe" element={<CreateRecipe />} />
+            <Route path="/profilepage" element={<ProfilePage />} />
+            <Route path="/likedrecipes" element={<LikedRecipes />} />
+            <Route path="/myrecipes" element={<MyRecipes />} />
+          </Routes>
         </div>
       </Router>
     </AuthContext.Provider>

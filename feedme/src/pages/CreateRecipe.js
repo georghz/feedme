@@ -11,8 +11,7 @@ import { AuthContext } from "../App";
 
 export default function CreateRecipe() {
   const user = useContext(AuthContext);
-  const [{theme, isDark}] = useContext(ThemeContext);
-
+  const [{ theme, isDark }] = useContext(ThemeContext);
 
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -102,22 +101,35 @@ export default function CreateRecipe() {
 */
 
   return (
-    
-    <div className="createRecipePage" style={{backgroundColor: theme.backgroundColor, color: theme.color}}> 
-      <div className="cpContainer" style={{backgroundColor: theme.textboxColor}}>
-        <h1 style={{color: theme.color}}>Create A Recipe</h1> 
+    <div
+      className="createRecipePage"
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+    >
+      <div
+        className="cpContainer"
+        style={{ backgroundColor: theme.textboxColor }}
+      >
+        <h1 style={{ color: theme.color }}>Create A Recipe</h1>
         <div className="inputGp">
-          <label style={{color: theme.color}}> Recipe Title:</label>
-          <input style={{backgroundColor: theme.backgroundColor, color: theme.color}}
+          <label style={{ color: theme.color }}> Recipe Title:</label>
+          <input
+            style={{
+              backgroundColor: theme.backgroundColor,
+              color: theme.color,
+            }}
             placeholder="Title..."
             onChange={(event) => {
               setRecipeTitle(event.target.value);
             }}
-          /> 
+          />
         </div>
         <div className="inputGp">
-          <label style={{color: theme.color}}> Ingredients:</label>
-          <textarea style={{backgroundColor: theme.backgroundColor, color: theme.color}}
+          <label style={{ color: theme.color }}> Ingredients:</label>
+          <textarea
+            style={{
+              backgroundColor: theme.backgroundColor,
+              color: theme.color,
+            }}
             placeholder="Ingredients..."
             onChange={(event) => {
               setRecipeSteps(event.target.value);
@@ -125,22 +137,30 @@ export default function CreateRecipe() {
           />
         </div>
         <div className="inputGp">
-          <label style={{color: theme.color}}> Steps:</label>
-          <textarea style={{backgroundColor: theme.backgroundColor, color: theme.color}}
+          <label style={{ color: theme.color }}> Steps:</label>
+          <textarea
+            style={{
+              backgroundColor: theme.backgroundColor,
+              color: theme.color,
+            }}
             placeholder="Steps..."
             onChange={(event) => {
               setIngredients(event.target.value);
             }}
-          /> 
+          />
         </div>
-        <input style={{color: theme.color}}
+        <input
+          style={{ color: theme.color }}
           type="file"
           accept="image/x-png,image/jpeg"
           onChange={(e) => {
             onImageChange(e);
           }}
         />
-        <button onClick={uploadRecipe} disabled={recipeTitle === ""}> Submit recipe</button>
+        <button onClick={uploadRecipe} disabled={recipeTitle === ""}>
+          {" "}
+          Submit recipe
+        </button>
       </div>
     </div>
   );

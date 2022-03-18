@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,7 @@ import { ThemeContext } from "../contexts/theme";
 
 export default function RecipeLike({ recipe, triggerUpdate }) {
   const user = useContext(AuthContext);
-  const [{theme}] = useContext(ThemeContext);
+  const [{ theme }] = useContext(ThemeContext);
   const checkIfAlreadyLiked = recipe.likedBy.includes(user?.uid);
 
   const handleLike = async (id) => {
@@ -36,21 +36,20 @@ export default function RecipeLike({ recipe, triggerUpdate }) {
 
   return (
     <div className="likeContainer">
-
       <Button
         variant="outlined"
-        onClick={() => {handleLike(recipe.id);}}
+        onClick={() => {
+          handleLike(recipe.id);
+        }}
         disabled={user === null}
-        startIcon={checkIfAlreadyLiked ? <Favorite/> : <FavoriteBorderOutlined/>}
+        startIcon={
+          checkIfAlreadyLiked ? <Favorite /> : <FavoriteBorderOutlined />
+        }
         endIcon={recipe.likes}
-        color='primary'
+        color="primary"
       >
         {checkIfAlreadyLiked ? "   Unlike   " : "   Like   "}
-      </Button >
-        
-      
+      </Button>
     </div>
   );
 }
-
-

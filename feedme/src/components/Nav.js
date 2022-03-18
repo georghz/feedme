@@ -4,19 +4,19 @@ import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon,faUser } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
 import styles from "./Nav.css";
 import logo from "./../logo2.png";
-import { ThemeContext } from "../contexts/theme"; 
+import { ThemeContext } from "../contexts/theme";
 import { IconButton } from "@mui/material";
-import { Brightness5, Brightness7 } from '@mui/icons-material/';
+import { Brightness5, Brightness7 } from "@mui/icons-material/";
 
 export default function Nav() {
   const user = useContext(AuthContext);
-  const [{isDark}, toggleTheme] = useContext(ThemeContext);
+  const [{ isDark }, toggleTheme] = useContext(ThemeContext);
 
   return (
     <div className="navBar">
@@ -37,16 +37,14 @@ export default function Nav() {
             &nbsp;&nbsp;&nbsp;
           </>
         )}
-        
         {/** Endret til MUI-knapp
         <button className="darkmode" onClick={toggleTheme}> 
           <FontAwesomeIcon icon={!isDark ? faMoon : faSun} /> 
         </button>
         */}
-         <IconButton className="darkButton" onClick={toggleTheme}>
-            {!isDark ? <Brightness7 /> : <Brightness5/>}
-         </IconButton>
-
+        <IconButton className="darkButton" onClick={toggleTheme}>
+          {!isDark ? <Brightness7 /> : <Brightness5 />}
+        </IconButton>
         <Link className="pb" to="/profilepage">
           {" "}
           <FontAwesomeIcon icon={faUser} />{" "}

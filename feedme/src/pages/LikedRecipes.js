@@ -11,7 +11,7 @@ import { Navigate } from "react-router-dom";
 export default function LikedRecipes() {
   const [postLists, setPostList] = useState([]);
   const user = useContext(AuthContext);
-  
+
   const getLikedPosts = async () => {
     const q = query(
       collection(db, "recipes"),
@@ -29,14 +29,15 @@ export default function LikedRecipes() {
     //checkForEmptyLikedList();
   }, [user]);
 
-
-
   return (
     <div className="homePage">
-      {postLists.length === 0 ? <h1>You have not liked any recipes yet ... </h1> :
-      postLists.map((recipe) => {
-        return <Recipe recipe={recipe} triggerUpdate={getLikedPosts}/> 
-      })}
+      {postLists.length === 0 ? (
+        <h1>You have not liked any recipes yet ... </h1>
+      ) : (
+        postLists.map((recipe) => {
+          return <Recipe recipe={recipe} triggerUpdate={getLikedPosts} />;
+        })
+      )}
     </div>
   );
 }
