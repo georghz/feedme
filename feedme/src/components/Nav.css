@@ -26,6 +26,10 @@
   left: 95%;
 }
 
+.darkButton {
+  position: fixed;
+}
+
 a {
   color: rgb(227, 100, 20);
   justify-content: center;
