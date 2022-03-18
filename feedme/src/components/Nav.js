@@ -47,7 +47,9 @@ export default function Nav() {
         </IconButton>
         <Link className="pb" to="/profilepage">
           {" "}
+          <IconButton>
           <FontAwesomeIcon icon={faUser} />{" "}
+          </IconButton>
         </Link>
       </nav>
     </div>
