@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 export default function Categories({ categoriesList, setCategoryList }) {
   const recipeCategory = {
-    dinner: "dinner",
-    breakfast: "breakfast",
-    // vegan: "vegan",
-    // glutenFree: "gluten free",
+    dinner: "Dinner",
+    vegan: "Vegan",
+    glutenfree: "Gluten free",
+    breakfast: "Breakfast",
+    lunch: "Lunch",
   };
 
   const updateCategory = (checked, recipeCategory) => {
@@ -14,7 +15,7 @@ export default function Categories({ categoriesList, setCategoryList }) {
     } else {
       // unchecked
       const indexToBeRemoved = categoriesList.indexOf(recipeCategory);
-      categoriesList.splice(indexToBeRemoved, 1);
+      categoriesList.splice(indexToBeRemoved, 1); 
     }
   };
 
@@ -36,8 +37,9 @@ function CategoryCheckbox({ label, handleCheck }) {
 
   return (
     <label>
-      <input type="checkbox" value={checked} onClick={onClick} key={label} />
+      <input type="checkbox" value={checked} onClick={onClick} key={label}/>
       {label}
+      <br/>
     </label>
   );
 }

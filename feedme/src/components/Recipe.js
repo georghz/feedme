@@ -19,11 +19,17 @@ export default function Recipe({ recipe, triggerUpdate }) {
 
       <b>Ingredients: </b>
       <div className="recipeIngredientContainer"> {recipe.recipeText.map((ing) => {return (<>{ing}<br/></>)})} </div>
+      
       <b> Steps: </b>
       <div className="recipeTextContainer"> {recipe.recipeText} </div>
+
+      <b>Categories: <br/></b>
+      {recipe.categories}
+
       {recipe.author.id === null  && (<h3 style={{color:'gray'}}>@NON-EXISTING USER</h3>)}
       {recipe.author.id !== null && (<h3>@{recipe.author.name}</h3>)}  
       <RecipeLike recipe={recipe} triggerUpdate={triggerUpdate} />
+    
     </div>
   );
-}
+} 
