@@ -14,8 +14,8 @@ export default function Categories({ categoriesList, setCategoryList }) {
       setCategoryList([...categoriesList, recipeCategory]);
     } else {
       // unchecked
-      const indexToBeRemoved = categoriesList.indexOf(recipeCategory);
-      categoriesList.splice(indexToBeRemoved, 1); 
+      const updatedList = categoriesList.filter((c) => c !== recipeCategory);
+      setCategoryList(updatedList);
     }
   };
 
