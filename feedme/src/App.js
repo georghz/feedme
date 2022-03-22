@@ -18,6 +18,7 @@ import Nav from "./components/Nav";
 import LikedRecipes from "./pages/LikedRecipes";
 import MyRecipes from "./pages/MyRecipes";
 import { ThemeContext } from "./contexts/theme";
+import EditRecipe from "./pages/EditRecipe";
 
 export const AuthContext = createContext();
 
@@ -40,13 +41,15 @@ function App() {
           className="app"
           style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
         >
-          <Routes>
-            <Route path="" element={<Recipes />} />
-            <Route path="/createrecipe" element={<CreateRecipe />} />
-            <Route path="/profilepage" element={<ProfilePage />} />
-            <Route path="/likedrecipes" element={<LikedRecipes />} />
-            <Route path="/myrecipes" element={<MyRecipes />} />
-          </Routes>
+        <Routes>
+          <Route path="" element={<Recipes />} />
+          <Route path="/createrecipe" element={<CreateRecipe />} />
+          <Route path="/profilepage" element={<ProfilePage />} />
+          <Route path="/likedrecipes" element={<LikedRecipes />} />
+          <Route path="/myrecipes" element={<MyRecipes />} />
+          <Route path="/editrecipe/:recipeID" element={<EditRecipe />}/>
+        </Routes>
+
         </div>
       </Router>
     </AuthContext.Provider>

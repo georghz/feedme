@@ -1,0 +1,21 @@
+.inputIng {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputIng input,
+.inputIng textarea {
+  font-size: 18px;
+  border: none;
+  border-radius: 2px;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.inputIng input {
+  height: 40px;
+}
+.inputIng textarea {
+  height: 25px;
+}
