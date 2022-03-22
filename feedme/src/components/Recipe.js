@@ -40,8 +40,13 @@ export default function Recipe({ recipe, triggerUpdate }) {
           );
         })}{" "}
       </div>
+      <br/>
       <b> Steps: </b>
       <div className="recipeTextContainer"> {recipe.steps} </div>
+      
+      <br/>
+      <b> Categories: </b>
+      {recipe.categories}
       {recipe.author.id === null && (
         <h3 style={{ color: "gray" }}>@NON-EXISTING USER</h3>
       )}
