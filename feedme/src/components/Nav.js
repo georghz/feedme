@@ -12,7 +12,7 @@ import styles from "./Nav.css";
 import logo from "./../logo2.png";
 import { ThemeContext } from "../contexts/theme";
 import { IconButton } from "@mui/material";
-import { Brightness5, Brightness7 } from "@mui/icons-material/";
+import { Brightness5, Brightness7 , Brightness4 } from "@mui/icons-material/";
 
 export default function Nav() {
   const user = useContext(AuthContext);
@@ -43,7 +43,7 @@ export default function Nav() {
         </button>
         */}
         <IconButton className="darkButton" onClick={toggleTheme}>
-          {!isDark ? <Brightness7 /> : <Brightness5 />}
+          {!isDark ? <Brightness7 /> : <Brightness4 />}
         </IconButton>
         <Link className="pb" to="/profilepage">
           {" "}
