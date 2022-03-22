@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../contexts/theme";
 
-export default function Categories({ categoriesList, setCategoryList }) {
+export default function Categories({ categoriesList, setCategoryList, backgroundColor, color }) {
+  const [{ theme }] = useContext(ThemeContext);
   const recipeCategory = {
     dinner: "Dinner",
     vegan: "Vegan",
@@ -11,7 +12,7 @@ export default function Categories({ categoriesList, setCategoryList }) {
   };
 
   const updateCategory = (checked, recipeCategory) => {
-    if (checked) {
+    if (checked && !categoriesList.includes(recipeCategory)) {
       setCategoryList([...categoriesList, recipeCategory]);
     } else {
       // unchecked
@@ -22,16 +23,22 @@ export default function Categories({ categoriesList, setCategoryList }) {
 
   return Object.values(recipeCategory).map((recipeCategory) => (
     <CategoryCheckbox
+      backgroundColor={backgroundColor}
+      color={color}
       label={recipeCategory}
       handleCheck={(value) => updateCategory(value, recipeCategory)}
     />
   ));
 }
 
-function CategoryCheckbox({ label, handleCheck }) {
-  const [checked, setChecked] = useState(false);
-  const [{theme}] = useContext(ThemeContext);
-
+function CategoryCheckbox({
+  label,
+  handleCheck,
+  backgroundColor,
+  color,
+  isChecked,
+}) {
+  const [checked, setChecked] = useState(isChecked);
 
   const onClick = () => {
     setChecked(!checked);
@@ -39,10 +46,10 @@ function CategoryCheckbox({ label, handleCheck }) {
   };
 
   return (
-    <label  style={{ backgroundColor: theme.backgroundColor, color: theme.color }}>
-      <input type="checkbox" value={checked} onClick={onClick} key={label}/>
+    <label style={{ backgroundColor: backgroundColor, color: color }}>
+      <input type="checkbox" value={checked} onClick={onClick} key={label} />
       {label}
-      <br/>
+      <br />
     </label>
   );
 }

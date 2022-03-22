@@ -161,7 +161,7 @@ export default function CreateRecipe() {
             }}
           />
         </div>
-        <Categories categoriesList={categories} setCategoryList={setCategories} />
+        <Categories  color={theme.color} categoriesList={categories} setCategoryList={setCategories} />
         <input
           style={{ color: theme.color }}
           type="file"

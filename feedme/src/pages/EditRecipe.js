@@ -7,6 +7,7 @@ import "./CreateRecipe.css";
 import { useParams } from "react-router-dom";
 
 import InputIngredients from "../components/InputIngredients";
+import Categories from "../components/Categories";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
@@ -23,6 +24,7 @@ export default function EditRecipe() {
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState([""]);
   const [recipeSteps, setRecipeSteps] = useState("");
+  const [categories, setCategories] = useState([]);
   //const [images, setImages] = useState([]);
   //const [imageURLs, setImageURLs] = useState([]);
 
@@ -33,6 +35,7 @@ export default function EditRecipe() {
     setRecipeTitle(docSnap.data().title);
     setIngredients(docSnap.data().recipeText);
     setRecipeSteps(docSnap.data().steps);
+    setCategories(docSnap.data().categories);
   };
 
   useEffect(() => {
@@ -98,6 +101,7 @@ export default function EditRecipe() {
           recipeText: ingredients,
           steps: recipeSteps,
           imgURL: url,
+          categories: categories,
         },
         { merge: true }
       );
@@ -108,6 +112,7 @@ export default function EditRecipe() {
           title: recipeTitle,
           recipeText: ingredients,
           steps: recipeSteps,
+          categories: categories,
         },
         { merge: true }
       );
@@ -183,7 +188,9 @@ export default function EditRecipe() {
             }}
           />
         </div>
+        <Categories color={theme.color} ccategoriesList={categories} setCategoryList={setCategories} />
         <input
+          style={{ color: theme.color }}
           type="file"
           accept="image/x-png,image/jpeg"
           onChange={(e) => {
