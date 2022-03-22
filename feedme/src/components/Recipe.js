@@ -11,13 +11,13 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../App";
 
 export default function Recipe({ recipe, triggerUpdate }) {
-  const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
+  const [{ theme }] = useContext(ThemeContext);
   const user = useContext(AuthContext);
 
   return (
     <div
       className="recipe"
-      key={recipe.id}
+      //key={recipe.id}
       style={{ backgroundColor: theme.textboxColor }}
     >
       <img className="recipeImg" src={recipe.imgURL} alt="" />
@@ -31,12 +31,12 @@ export default function Recipe({ recipe, triggerUpdate }) {
       <b>Ingredients: </b>
       <div className="recipeIngredientContainer">
         {" "}
-        {recipe.recipeText.map((ing) => {
+        {recipe.recipeText.map((ing, i) => {
           return (
-            <>
+            <span key={i}>
               {ing}
               <br />
-            </>
+            </span>
           );
         })}{" "}
       </div>
@@ -46,10 +46,10 @@ export default function Recipe({ recipe, triggerUpdate }) {
       
       <br/>
       <b> Categories: <br/></b>
-      {recipe.categories.map((ing) => {
+      {recipe.categories.map((category) => {
           return (
             <>
-              {ing}
+              {category}
               <br />
             </>
           );
