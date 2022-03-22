@@ -54,4 +54,4 @@ export default function Recipe({ recipe, triggerUpdate }) {
       )}
     </div>
   );
-}
+} 
