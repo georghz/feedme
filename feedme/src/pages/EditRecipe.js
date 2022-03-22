@@ -188,7 +188,7 @@ export default function EditRecipe() {
             }}
           />
         </div>
-        <Categories color={theme.color} ccategoriesList={categories} setCategoryList={setCategories} />
+        <Categories color={theme.color} categoriesList={categories} setCategoryList={setCategories} />
         <input
           style={{ color: theme.color }}
           type="file"
