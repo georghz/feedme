@@ -15,9 +15,12 @@ import Login from "../components/Login";
 import Profile from "../components/Profile";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../App";
+import { Button } from "@mui/material";
+import { ThemeContext } from "../contexts/theme";
 
 function ProfilePage() {
   const user = useContext(AuthContext);
+  const [{ theme, isDark }] = useContext(ThemeContext);
   const [postLists, setPostList] = useState([]);
 
   const signUserOut = () => {
@@ -67,14 +70,29 @@ function ProfilePage() {
       ) : (
         <>
           <Profile></Profile>
-          <button style={{width: "90px"}} onClick={signUserOut}> Log Out</button>
-          <button style={{width: "90px"}} onClick={deletUser}> Delete User </button>
+          <div className="buttonGroup">
+            <Button
+              variant="outlined"
+              onClick={signUserOut}
+              sx={{ color: theme.color, borderColor: theme.color }}
+            >
+              {" "}
+              Log Out
+            </Button>
+            <> </>
+            <Button
+              variant="outlined"
+              onClick={deletUser}
+              sx={{ color: theme.color, borderColor: theme.color }}
+            >
+              {" "}
+              Delete User{" "}
+            </Button>
+          </div>
         </>
       )}
     </div>
   );
 }
-
-
 
 export default ProfilePage;

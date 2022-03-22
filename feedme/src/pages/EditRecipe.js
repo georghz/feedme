@@ -1,30 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { addDoc, collection, serverTimestamp} from "firebase/firestore";
-import { db, auth , storage } from "../firebase-config";
+import { addDoc, doc, collection, getDoc, setDoc } from "firebase/firestore";
+import { db, auth, storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import style from "./CreateRecipe.css";
-import { ThemeContext } from "../contexts/theme";
 import "./CreateRecipe.css";
+import { useParams } from "react-router-dom";
 
 import InputIngredients from "../components/InputIngredients";
-import Categories from "../components/Categories";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
+import { ThemeContext } from "../contexts/theme";
 
-export default function CreateRecipe() {
+export default function EditRecipe() {
+  const { recipeID } = useParams();
+
   const user = useContext(AuthContext);
-  const [{ theme, isDark }] = useContext(ThemeContext);
+  const [{theme}] = useContext(ThemeContext);
+
+  const recipesCollectionRef = doc(db, "recipes", recipeID);
 
   const [recipeTitle, setRecipeTitle] = useState("");
   const [ingredients, setIngredients] = useState([""]);
   const [recipeSteps, setRecipeSteps] = useState("");
-  const [categories, setCategories] = useState([]);
   //const [images, setImages] = useState([]);
   //const [imageURLs, setImageURLs] = useState([]);
 
   const [image, setImage] = useState(null);
+
+  const setRecipe = async () => {
+    const docSnap = await getDoc(recipesCollectionRef);
+    setRecipeTitle(docSnap.data().title);
+    setIngredients(docSnap.data().recipeText);
+    setRecipeSteps(docSnap.data().steps);
+  };
+
+  useEffect(() => {
+    setRecipe();
+  }, []);
 
   const onImageChange = (e) => {
     const reader = new FileReader();
@@ -63,33 +76,43 @@ export default function CreateRecipe() {
         console.log(storageRef.fullPath);
         getDownloadURL(ref(storage, image.name)).then((ret) => {
           console.log(ret);
-          createRecipe(ret);
+          editRecipe(ret);
         });
       });
     } else {
-      createRecipe(null)
-    };
+      editRecipe(null);
+    }
   };
 
-  const recipesCollectionRef = collection(db, "recipes");
   let navigate = useNavigate();
 
-  const createRecipe = async (url) => {
+  const editRecipe = async (url) => {
     console.log(url);
     //await uploadToFirebase()
-    console.log(recipeSteps)
-    await addDoc(recipesCollectionRef, {
-      title: recipeTitle,
-      recipeText: ingredients,
-      steps: recipeSteps,
-      likes: 0,
-      likedBy: [],
-      author: { name: user.displayName, id: user?.uid },
-      imgURL: url,
-      createdAt: serverTimestamp(),
-      modifiedAt: serverTimestamp(),
-      categories : categories,
-    });
+    console.log(recipeSteps);
+    if (url) {
+      await setDoc(
+        recipesCollectionRef,
+        {
+          title: recipeTitle,
+          recipeText: ingredients,
+          steps: recipeSteps,
+          imgURL: url,
+        },
+        { merge: true }
+      );
+    } else {
+      await setDoc(
+        recipesCollectionRef,
+        {
+          title: recipeTitle,
+          recipeText: ingredients,
+          steps: recipeSteps,
+        },
+        { merge: true }
+      );
+    }
+
     navigate("/");
   };
 
@@ -118,17 +141,17 @@ export default function CreateRecipe() {
         className="cpContainer"
         style={{ backgroundColor: theme.textboxColor }}
       >
-        <h1 style={{ color: theme.color }}>Create A Recipe</h1>
+        <h1 style={{ color: theme.color }}>Edit Recipe</h1>
         <div className="inputGp">
           <label style={{ color: theme.color }}> Recipe Title:</label>
           <input
+            value={recipeTitle}
+            onChange={(event) => {
+              setRecipeTitle(event.target.value);
+            }}
             style={{
               backgroundColor: theme.backgroundColor,
               color: theme.color,
-            }}
-            placeholder="Title..."
-            onChange={(event) => {
-              setRecipeTitle(event.target.value);
             }}
           />
         </div>
@@ -136,34 +159,31 @@ export default function CreateRecipe() {
         {/* <div className="inputGp">
           <label> Ingredients:</label>
           <textarea
-            style={{
-              backgroundColor: theme.backgroundColor,
-              color: theme.color,
-            }}
             placeholder="Ingredients..."
             onChange={(event) => {
               setRecipeSteps(event.target.value);
             }}
           />
         </div> */}
-        <InputIngredients ingredientsList={ingredients} setIngredientsList={setIngredients} />
+        <InputIngredients
+          ingredientsList={ingredients}
+          setIngredientsList={setIngredients}
+        />
         {/*  */}
         <div className="inputGp">
           <label style={{ color: theme.color }}> Steps:</label>
           <textarea
+            value={recipeSteps}
             style={{
               backgroundColor: theme.backgroundColor,
               color: theme.color,
             }}
-            placeholder="Steps..."
             onChange={(event) => {
               setRecipeSteps(event.target.value);
             }}
           />
         </div>
-        <Categories categoriesList={categories} setCategoryList={setCategories} />
         <input
-          style={{ color: theme.color }}
           type="file"
           accept="image/x-png,image/jpeg"
           onChange={(e) => {
@@ -172,7 +192,7 @@ export default function CreateRecipe() {
         />
         <button onClick={uploadRecipe} disabled={recipeTitle === ""}>
           {" "}
-          Submit recipe
+          Save recipe
         </button>
       </div>
     </div>

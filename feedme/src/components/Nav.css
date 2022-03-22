@@ -2,7 +2,7 @@
 
 .nav {
   position: fixed;
-  margin: -80px 0% 0% 0%;;
+  margin: -80px 0% 0% 0%;
   width: 100%;
   height: 80px;
   background-color: rgb(253, 197, 0);
@@ -24,6 +24,10 @@
 .pb {
   position: fixed;
   left: 95%;
+}
+
+.darkButton {
+  position: fixed;
 }
 
 a {

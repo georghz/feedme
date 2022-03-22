@@ -5,7 +5,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getStorage} from "firebase/storage";
+import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -17,7 +17,7 @@ const firebaseConfig = {
   projectId: "pu-gruppe-38",
   storageBucket: "pu-gruppe-38.appspot.com",
   messagingSenderId: "759990388569",
-  appId: "1:759990388569:web:39ab7c08816dbc64c22e48"
+  appId: "1:759990388569:web:39ab7c08816dbc64c22e48",
 };
 
 // Initialize Firebase
@@ -27,4 +27,3 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 export const storage = getStorage(app);
-
