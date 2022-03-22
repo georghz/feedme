@@ -1,12 +1,16 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../App";
+import { Button } from "@mui/material";
+import { Favorite, FavoriteBorderOutlined } from "@mui/icons-material";
+import { ThemeContext } from "../contexts/theme";
 
 export default function RecipeLike({ recipe, triggerUpdate }) {
   const user = useContext(AuthContext);
+  const [{ theme }] = useContext(ThemeContext);
   const checkIfAlreadyLiked = recipe.likedBy.includes(user?.uid);
 
   const handleLike = async (id) => {
@@ -32,18 +36,20 @@ export default function RecipeLike({ recipe, triggerUpdate }) {
 
   return (
     <div className="likeContainer">
-      <button
+      <Button
+        variant="outlined"
         onClick={() => {
           handleLike(recipe.id);
         }}
         disabled={user === null}
+        startIcon={
+          checkIfAlreadyLiked ? <Favorite /> : <FavoriteBorderOutlined />
+        }
+        endIcon={recipe.likes}
+        sx={{color: theme.color, borderColor: theme.color}}
       >
-        <FontAwesomeIcon
-          icon={checkIfAlreadyLiked ? faThumbsDown : faThumbsUp}
-        />
-        {checkIfAlreadyLiked ? " Unlike" : " Like"}
-      </button>{" "}
-      {recipe.likes}
+        {checkIfAlreadyLiked ? "   Unlike   " : "   Like   "}
+      </Button>
     </div>
   );
 }

@@ -7,9 +7,12 @@ import Login from "../components/Login";
 import Profile from "../components/Profile";
 import { useContext } from "react";
 import { AuthContext } from "../App";
+import { Button } from "@mui/material";
+import { ThemeContext } from "../contexts/theme";
 
 function ProfilePage() {
   const user = useContext(AuthContext);
+  const [{ theme, isDark }] = useContext(ThemeContext);
 
   const signUserOut = () => {
     signOut(auth).then(() => {
@@ -28,8 +31,25 @@ function ProfilePage() {
       ) : (
         <>
           <Profile></Profile>
-          <button onClick={signUserOut}> Log Out</button>
-          <button onClick={deletUser}> Delete User </button>
+          <div className="buttonGroup">
+            <Button
+              variant="outlined"
+              onClick={signUserOut}
+              sx={{ color: theme.color, borderColor: theme.color }}
+            >
+              {" "}
+              Log Out
+            </Button>
+            <> </>
+            <Button
+              variant="outlined"
+              onClick={deletUser}
+              sx={{ color: theme.color, borderColor: theme.color }}
+            >
+              {" "}
+              Delete User{" "}
+            </Button>
+          </div>
         </>
       )}
     </div>
