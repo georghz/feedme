@@ -45,8 +45,16 @@ export default function Recipe({ recipe, triggerUpdate }) {
       <div className="recipeTextContainer"> {recipe.steps} </div>
       
       <br/>
-      <b> Categories: </b>
-      {recipe.categories}
+      <b> Categories: <br/></b>
+      {recipe.categories.map((ing) => {
+          return (
+            <>
+              {ing}
+              <br />
+            </>
+          );
+        })}
+        
       {recipe.author.id === null && (
         <h3 style={{ color: "gray" }}>@NON-EXISTING USER</h3>
       )}
