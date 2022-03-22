@@ -4,17 +4,19 @@ import { db, auth, storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./CreateRecipe.css";
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
 import InputIngredients from "../components/InputIngredients";
 
 import { useContext } from "react";
 import { AuthContext } from "../App";
+import { ThemeContext } from "../contexts/theme";
 
 export default function EditRecipe() {
-  const { recipeID } = useParams()
+  const { recipeID } = useParams();
 
   const user = useContext(AuthContext);
+  const [{theme}] = useContext(ThemeContext);
 
   const recipesCollectionRef = doc(db, "recipes", recipeID);
 
@@ -28,14 +30,14 @@ export default function EditRecipe() {
 
   const setRecipe = async () => {
     const docSnap = await getDoc(recipesCollectionRef);
-    setRecipeTitle(docSnap.data().title)
-    setIngredients(docSnap.data().recipeText)
-    setRecipeSteps(docSnap.data().steps)
-  }
+    setRecipeTitle(docSnap.data().title);
+    setIngredients(docSnap.data().recipeText);
+    setRecipeSteps(docSnap.data().steps);
+  };
 
   useEffect(() => {
     setRecipe();
-  }, []); 
+  }, []);
 
   const onImageChange = (e) => {
     const reader = new FileReader();
@@ -87,22 +89,30 @@ export default function EditRecipe() {
   const editRecipe = async (url) => {
     console.log(url);
     //await uploadToFirebase()
-    console.log(recipeSteps)
+    console.log(recipeSteps);
     if (url) {
-      await setDoc(recipesCollectionRef, {
-        title: recipeTitle,
-        recipeText: ingredients,
-        steps: recipeSteps,
-        imgURL: url,
-      }, { merge: true });
+      await setDoc(
+        recipesCollectionRef,
+        {
+          title: recipeTitle,
+          recipeText: ingredients,
+          steps: recipeSteps,
+          imgURL: url,
+        },
+        { merge: true }
+      );
     } else {
-      await setDoc(recipesCollectionRef, {
-        title: recipeTitle,
-        recipeText: ingredients,
-        steps: recipeSteps,
-      }, { merge: true });
+      await setDoc(
+        recipesCollectionRef,
+        {
+          title: recipeTitle,
+          recipeText: ingredients,
+          steps: recipeSteps,
+        },
+        { merge: true }
+      );
     }
-    
+
     navigate("/");
   };
 
@@ -123,15 +133,25 @@ export default function EditRecipe() {
 */
 
   return (
-    <div className="createRecipePage">
-      <div className="cpContainer">
-        <h1>Edit Recipe</h1>
+    <div
+      className="createRecipePage"
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+    >
+      <div
+        className="cpContainer"
+        style={{ backgroundColor: theme.textboxColor }}
+      >
+        <h1 style={{ color: theme.color }}>Edit Recipe</h1>
         <div className="inputGp">
-          <label> Recipe Title:</label>
+          <label style={{ color: theme.color }}> Recipe Title:</label>
           <input
             value={recipeTitle}
             onChange={(event) => {
               setRecipeTitle(event.target.value);
+            }}
+            style={{
+              backgroundColor: theme.backgroundColor,
+              color: theme.color,
             }}
           />
         </div>
@@ -145,12 +165,19 @@ export default function EditRecipe() {
             }}
           />
         </div> */}
-        <InputIngredients ingredientsList={ingredients} setIngredientsList={setIngredients} />
+        <InputIngredients
+          ingredientsList={ingredients}
+          setIngredientsList={setIngredients}
+        />
         {/*  */}
         <div className="inputGp">
-          <label> Steps:</label>
+          <label style={{ color: theme.color }}> Steps:</label>
           <textarea
             value={recipeSteps}
+            style={{
+              backgroundColor: theme.backgroundColor,
+              color: theme.color,
+            }}
             onChange={(event) => {
               setRecipeSteps(event.target.value);
             }}
@@ -163,7 +190,10 @@ export default function EditRecipe() {
             onImageChange(e);
           }}
         />
-        <button onClick={uploadRecipe} disabled={recipeTitle === ""}> Save recipe</button>
+        <button onClick={uploadRecipe} disabled={recipeTitle === ""}>
+          {" "}
+          Save recipe
+        </button>
       </div>
     </div>
   );
