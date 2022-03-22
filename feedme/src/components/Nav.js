@@ -21,7 +21,7 @@ export default function Nav() {
   return (
     <div className="navBar">
       <nav className="nav">
-        <img className="logo" src={logo} alt="Logo" />
+        <Link to="/"><img className="logo" src={logo} alt="Logo" /></Link>
         &nbsp;&nbsp;&nbsp;
         <Link to="/"> Feed </Link>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

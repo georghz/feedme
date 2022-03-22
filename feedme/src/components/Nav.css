@@ -17,9 +17,10 @@
 
 .logo {
   max-width: 10%;
-  position: fixed;
+  position: absolute;
   left: -0px;
   margin: 0 auto;
+  transform: translate(0px, -50%);
 }
 
 .pb {

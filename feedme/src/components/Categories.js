@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../contexts/theme";
 
 export default function Categories({ categoriesList, setCategoryList }) {
   const recipeCategory = {
@@ -29,6 +30,8 @@ export default function Categories({ categoriesList, setCategoryList }) {
 
 function CategoryCheckbox({ label, handleCheck }) {
   const [checked, setChecked] = useState(false);
+  const [{theme}] = useContext(ThemeContext);
+
 
   const onClick = () => {
     setChecked(!checked);
@@ -36,7 +39,7 @@ function CategoryCheckbox({ label, handleCheck }) {
   };
 
   return (
-    <label>
+    <label  style={{ backgroundColor: theme.backgroundColor, color: theme.color }}>
       <input type="checkbox" value={checked} onClick={onClick} key={label}/>
       {label}
       <br/>
