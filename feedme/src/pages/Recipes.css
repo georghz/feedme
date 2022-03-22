@@ -1,12 +1,13 @@
 .homePage {
-  width: 100%;
+  width: 100% - 160px;
   min-height: calc(100vh - 80px);
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  padding-bottom: 40px ;
+  padding-bottom: 40px;
+  padding-left: 160px;
   font-family: "League Spartan", sans-serif;
   display: grid;
   grid-template-columns: repeat(1, auto);
