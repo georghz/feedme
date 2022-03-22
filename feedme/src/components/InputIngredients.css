@@ -15,7 +15,12 @@
 
 .inputIng input {
   height: 40px;
+
 }
 .inputIng textarea {
   height: 25px;
+  min-width: 98%;
+  max-width: 98%;
+  min-height: 40px;
+  max-height: 40px;
 }
