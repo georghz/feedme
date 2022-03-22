@@ -3,20 +3,24 @@ import { useContext } from "react";
 import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 import { useEffect, useState } from "react";
+import { ThemeContext } from "../contexts/theme";
 
 import "./InputIngredients.css";
 
 export default function InputIngredients({ ingredientsList, setIngredientsList }) {
 
+  const [{ theme }] = useContext(ThemeContext);
+
   return (
     <div className="inputIng">
-      <label> Ingredients:</label>
-      <p style={{color:"gray", margin:"0px", fontSize: "14px"}}>Press "Enter" to add more ingredients. Press "Backspace" to delete.</p>
+      <label style={{color: theme.color}}> Ingredients:</label>
+      <p style={{color:theme.color, margin:"0px", fontSize: "14px"}}>Press "Enter" to add more ingredients. Press "Backspace" to delete.</p>
       {ingredientsList.map((ingredient, index) => {
         return (
           <textarea
             value={ingredient}
             autoFocus="autofocus"
+            style={{backgroundColor: theme.backgroundColor, color: theme.color}}
             onKeyDown={(event) => {
               if (
                 event.code == "Enter" &&

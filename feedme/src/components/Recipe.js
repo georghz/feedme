@@ -49,7 +49,7 @@ export default function Recipe({ recipe, triggerUpdate }) {
       <RecipeLike recipe={recipe} triggerUpdate={triggerUpdate} />
       {user && recipe.author.id === user?.uid && (
         <Link to={`/editrecipe/${recipe.id}`}>
-          <FontAwesomeIcon icon={faPenToSquare} style={{ color: "black" }} />
+          <FontAwesomeIcon icon={faPenToSquare} style={{ color: theme.color }} />
         </Link>
       )}
     </div>
