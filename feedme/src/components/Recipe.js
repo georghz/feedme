@@ -59,6 +59,8 @@ export default function Recipe({ recipe, triggerUpdate }) {
         <h3 style={{ color: "gray" }}>@NON-EXISTING USER</h3>
       )}
       {recipe.author.id !== null && <h3>@{recipe.author.name}</h3>}
+      Modified at: {recipe.modifiedAt.toDate().toLocaleString("nb-NO")}
+      <br />
       <RecipeLike recipe={recipe} triggerUpdate={triggerUpdate} />
       {user && recipe.author.id === user?.uid && (
         <Link to={`/editrecipe/${recipe.id}`}>

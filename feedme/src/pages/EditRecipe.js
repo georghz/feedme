@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { addDoc, doc, collection, getDoc, setDoc } from "firebase/firestore";
+import { addDoc, doc, collection, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth, storage } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -104,6 +104,7 @@ export default function EditRecipe() {
           steps: rSteps,
           imgURL: url,
           categories: categories,
+          modifiedAt: serverTimestamp(),
         },
         { merge: true }
       );
@@ -115,6 +116,7 @@ export default function EditRecipe() {
           recipeText: ingredients,
           steps: rSteps,
           categories: categories,
+          modifiedAt: serverTimestamp(),
         },
         { merge: true }
       );
