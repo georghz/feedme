@@ -34,7 +34,7 @@ export default function EditRecipe() {
     const docSnap = await getDoc(recipesCollectionRef);
     setRecipeTitle(docSnap.data().title);
     setIngredients(docSnap.data().recipeText);
-    setRecipeSteps(docSnap.data().steps);
+    setRecipeSteps(docSnap.data().steps.replaceAll("<br />", '\n'));
     setCategories(docSnap.data().categories);
   };
 
