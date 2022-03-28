@@ -92,14 +92,16 @@ export default function EditRecipe() {
   const editRecipe = async (url) => {
     console.log(url);
     //await uploadToFirebase()
-    console.log(recipeSteps);
+    let rSteps = recipeSteps // JSON.stringify(recipeSteps);
+    rSteps = rSteps.replace(/(?:\r\n|\r|\n)/g, '<br />');
+    console.log(rSteps);
     if (url) {
       await setDoc(
         recipesCollectionRef,
         {
           title: recipeTitle,
           recipeText: ingredients,
-          steps: recipeSteps,
+          steps: rSteps,
           imgURL: url,
           categories: categories,
         },
@@ -111,7 +113,7 @@ export default function EditRecipe() {
         {
           title: recipeTitle,
           recipeText: ingredients,
-          steps: recipeSteps,
+          steps: rSteps,
           categories: categories,
         },
         { merge: true }
