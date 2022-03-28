@@ -33,7 +33,7 @@ export default function LikedRecipes() {
         setCategoryList={setCategoryList}
       />
       {recipeList.length === 0 ? (
-        <h1>You have not liked any recipes yet ... </h1>
+        <h1 style={{textAlign: "center"}}>You have not liked any recipes yet ... </h1>
       ) : (
         recipeList.map((recipe, i) => {
           return (

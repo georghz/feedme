@@ -42,7 +42,7 @@ export default function Recipe({ recipe, triggerUpdate }) {
       </div>
       <br/>
       <b> Steps: </b>
-      <div className="recipeTextContainer"> {recipe.steps} </div>
+      <div className="recipeTextContainer"> <td dangerouslySetInnerHTML={{__html: recipe.steps}} /> </div>
       
       <br/>
       <b> Categories: <br/></b>

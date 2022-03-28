@@ -76,12 +76,14 @@ export default function CreateRecipe() {
 
   const createRecipe = async (url) => {
     console.log(url);
+    let rSteps = recipeSteps // JSON.stringify(recipeSteps);
+    rSteps = rSteps.replace(/(?:\r\n|\r|\n)/g, '<br />');
     //await uploadToFirebase()
-    console.log(recipeSteps)
+    console.log(rSteps)
     await addDoc(recipesCollectionRef, {
       title: recipeTitle,
       recipeText: ingredients,
-      steps: recipeSteps,
+      steps: rSteps,
       likes: 0,
       likedBy: [],
       author: { name: user.displayName, id: user?.uid },
@@ -157,6 +159,7 @@ export default function CreateRecipe() {
             }}
             placeholder="Steps..."
             onChange={(event) => {
+              console.log(event.target.value)
               setRecipeSteps(event.target.value);
             }}
           />

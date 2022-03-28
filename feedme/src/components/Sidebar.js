@@ -17,11 +17,7 @@ export default function Sidebar({ categoriesList, setCategoryList }) {
   return (
     <div className="sidenav" style={{ color: "black"}}>
       
-      <br/>
-      <br/>
-      Select category to filter recipes: 
-      <br/>
-      <br/>
+      <h5>Select category to filter recipes: </h5>
       <Categories color={"black"} categoriesList={categoriesList} setCategoryList={setCategoryList} />
     </div>
   );
