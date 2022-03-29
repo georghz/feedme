@@ -19,6 +19,10 @@ Dersom dette gjennomføres korrekt kan prosjektet startes vha.:
 og vil være tilgjenglig på `localhost:3000` hvis ingenting annet er spesifisert.
 
 
+### 💾 Inspirasjon
+Vi har hentet inspirasjon fra følgende repo: https://github.com/machadop1407/react-firebase-blog-website 
+
+
 ### 📖 Beskrivelse av ønsket produkt 
 **Produktvisjon**: Gjøre deling av matoppskrifter så enkelt, informativt og effektivt som mulig.
 
